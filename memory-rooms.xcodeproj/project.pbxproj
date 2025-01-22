@@ -18,6 +18,13 @@
 		18D856972D387DF300103644 /* memory_roomsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D856962D387DF300103644 /* memory_roomsTests.swift */; };
 		18D856A12D387DF300103644 /* memory_roomsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D856A02D387DF300103644 /* memory_roomsUITests.swift */; };
 		18D856A32D387DF300103644 /* memory_roomsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D856A22D387DF300103644 /* memory_roomsUITestsLaunchTests.swift */; };
+		18D856BD2D3B2DDC00103644 /* wall hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 18D856BC2D3B2DDC00103644 /* wall hit.mp3 */; };
+		18D856C02D3B2F3300103644 /* PlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D856BF2D3B2F3300103644 /* PlayerNode.swift */; };
+		18D856C22D3B2F3F00103644 /* WallNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D856C12D3B2F3F00103644 /* WallNode.swift */; };
+		18D856C42D3B2F5700103644 /* ObjectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D856C32D3B2F5700103644 /* ObjectNode.swift */; };
+		18D856C72D3B2FB300103644 /* 8-Bit Coin Sound Effect (Copyright Free).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 18D856C52D3B2FB300103644 /* 8-Bit Coin Sound Effect (Copyright Free).mp3 */; };
+		18D856C82D3B2FB300103644 /* 8-Bit Powerup Sound Effects (Copyright Free).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 18D856C62D3B2FB300103644 /* 8-Bit Powerup Sound Effects (Copyright Free).mp3 */; };
+		18D856D12D3B34CE00103644 /* MyTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18D856CF2D3B34CE00103644 /* MyTileSet.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +59,14 @@
 		18D8569C2D387DF300103644 /* memory-roomsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "memory-roomsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D856A02D387DF300103644 /* memory_roomsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memory_roomsUITests.swift; sourceTree = "<group>"; };
 		18D856A22D387DF300103644 /* memory_roomsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memory_roomsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		18D856B82D3B2AFC00103644 /* VT323-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VT323-Regular.ttf"; sourceTree = "<group>"; };
+		18D856BC2D3B2DDC00103644 /* wall hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "wall hit.mp3"; sourceTree = "<group>"; };
+		18D856BF2D3B2F3300103644 /* PlayerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNode.swift; sourceTree = "<group>"; };
+		18D856C12D3B2F3F00103644 /* WallNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallNode.swift; sourceTree = "<group>"; };
+		18D856C32D3B2F5700103644 /* ObjectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectNode.swift; sourceTree = "<group>"; };
+		18D856C52D3B2FB300103644 /* 8-Bit Coin Sound Effect (Copyright Free).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "8-Bit Coin Sound Effect (Copyright Free).mp3"; sourceTree = "<group>"; };
+		18D856C62D3B2FB300103644 /* 8-Bit Powerup Sound Effects (Copyright Free).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "8-Bit Powerup Sound Effects (Copyright Free).mp3"; sourceTree = "<group>"; };
+		18D856CF2D3B34CE00103644 /* MyTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyTileSet.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,14 +117,13 @@
 		18D8567B2D387DF200103644 /* memory-rooms */ = {
 			isa = PBXGroup;
 			children = (
-				18D8567C2D387DF200103644 /* AppDelegate.swift */,
-				18D8567E2D387DF200103644 /* GameScene.sks */,
+				18D856B22D38815600103644 /* Scenes */,
+				18D856B32D3881FD00103644 /* Core */,
+				18D856B62D3B2A8000103644 /* Controllers */,
 				18D856802D387DF200103644 /* Actions.sks */,
-				18D856822D387DF200103644 /* GameScene.swift */,
-				18D856842D387DF200103644 /* GameViewController.swift */,
-				18D856862D387DF200103644 /* Main.storyboard */,
-				18D856892D387DF300103644 /* Assets.xcassets */,
-				18D8568B2D387DF300103644 /* LaunchScreen.storyboard */,
+				18D8567E2D387DF200103644 /* GameScene.sks */,
+				18D856CF2D3B34CE00103644 /* MyTileSet.sks */,
+				18D856B92D3B2D2C00103644 /* Resources */,
 			);
 			path = "memory-rooms";
 			sourceTree = "<group>";
@@ -129,6 +143,71 @@
 				18D856A22D387DF300103644 /* memory_roomsUITestsLaunchTests.swift */,
 			);
 			path = "memory-roomsUITests";
+			sourceTree = "<group>";
+		};
+		18D856B12D38814100103644 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				18D856BC2D3B2DDC00103644 /* wall hit.mp3 */,
+				18D856C52D3B2FB300103644 /* 8-Bit Coin Sound Effect (Copyright Free).mp3 */,
+				18D856C62D3B2FB300103644 /* 8-Bit Powerup Sound Effects (Copyright Free).mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		18D856B22D38815600103644 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				18D856BE2D3B2F2800103644 /* Nodes */,
+				18D856822D387DF200103644 /* GameScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		18D856B32D3881FD00103644 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				18D8567C2D387DF200103644 /* AppDelegate.swift */,
+				18D856862D387DF200103644 /* Main.storyboard */,
+				18D8568B2D387DF300103644 /* LaunchScreen.storyboard */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		18D856B62D3B2A8000103644 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				18D856842D387DF200103644 /* GameViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		18D856B72D3B2ACF00103644 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				18D856B82D3B2AFC00103644 /* VT323-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		18D856B92D3B2D2C00103644 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				18D856892D387DF300103644 /* Assets.xcassets */,
+				18D856B12D38814100103644 /* Sounds */,
+				18D856B72D3B2ACF00103644 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		18D856BE2D3B2F2800103644 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				18D856BF2D3B2F3300103644 /* PlayerNode.swift */,
+				18D856C12D3B2F3F00103644 /* WallNode.swift */,
+				18D856C32D3B2F5700103644 /* ObjectNode.swift */,
+			);
+			path = Nodes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,10 +314,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D856BD2D3B2DDC00103644 /* wall hit.mp3 in Resources */,
+				18D856D12D3B34CE00103644 /* MyTileSet.sks in Resources */,
+				18D856C82D3B2FB300103644 /* 8-Bit Powerup Sound Effects (Copyright Free).mp3 in Resources */,
 				18D8567F2D387DF200103644 /* GameScene.sks in Resources */,
 				18D856882D387DF200103644 /* Base in Resources */,
 				18D8568A2D387DF300103644 /* Assets.xcassets in Resources */,
 				18D856812D387DF200103644 /* Actions.sks in Resources */,
+				18D856C72D3B2FB300103644 /* 8-Bit Coin Sound Effect (Copyright Free).mp3 in Resources */,
 				18D8568D2D387DF300103644 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,8 +347,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D856C22D3B2F3F00103644 /* WallNode.swift in Sources */,
 				18D856832D387DF200103644 /* GameScene.swift in Sources */,
 				18D856852D387DF200103644 /* GameViewController.swift in Sources */,
+				18D856C02D3B2F3300103644 /* PlayerNode.swift in Sources */,
+				18D856C42D3B2F5700103644 /* ObjectNode.swift in Sources */,
 				18D8567D2D387DF200103644 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
