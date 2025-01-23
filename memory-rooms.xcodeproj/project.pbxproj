@@ -52,7 +52,7 @@
 		18D856822D387DF200103644 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		18D856842D387DF200103644 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		18D856872D387DF200103644 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		18D856892D387DF300103644 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18D856892D387DF300103644 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		18D8568C2D387DF300103644 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18D856922D387DF300103644 /* memory-roomsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "memory-roomsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D856962D387DF300103644 /* memory_roomsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memory_roomsTests.swift; sourceTree = "<group>"; };
