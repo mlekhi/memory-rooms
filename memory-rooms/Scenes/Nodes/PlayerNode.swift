@@ -66,6 +66,7 @@ class Player: SKSpriteNode {
     func stopWalking() {
         print("STOPPED WALKING")
         self.removeAction(forKey: "walking")
+        self.removeAction(forKey: "moving")
         self.texture = SKTexture(imageNamed: "character_idle")
     }
 
@@ -84,9 +85,10 @@ class Player: SKSpriteNode {
             moveAction = SKAction.move(by: CGVector(dx: 50, dy: 0), duration: 1)
         }
         
-        self.run(moveAction) {
-            self.stopWalking()
-        }
+        let repeatMoveAction = SKAction.repeatForever(moveAction)
+        
+        // Start the movement action
+        self.run(repeatMoveAction, withKey: "moving")
     }
 
 //    func isMoveValid(to position: CGPoint, walls: [SKSpriteNode], objects: [GameObject]) -> Bool {
