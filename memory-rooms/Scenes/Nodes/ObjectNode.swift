@@ -9,7 +9,7 @@ import SpriteKit
 
 class GameObject: SKSpriteNode {
     init(color: UIColor, size: CGSize, position: CGPoint) {
-        super.init(texture: nil, color: color, size: size)
+        super.init(texture: nil, color: .clear, size: size)
         self.position = position
     }
 
