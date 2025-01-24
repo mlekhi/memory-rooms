@@ -49,12 +49,19 @@ class GameScene: SKScene {
 //    }
     
     private func createTouchpad() {
+        // base of touchpad
         let touchpadSize = CGSize(width: 150, height: 150)
         touchpad = SKShapeNode(rectOf: touchpadSize, cornerRadius: 10)
         touchpad.position = CGPoint(x: size.width / 4, y: -500)
-        touchpad.fillColor = .gray
-        touchpad.alpha = 0.5
+        touchpad.fillColor = .clear
+        touchpad.strokeColor = .clear
+        touchpad.lineWidth = 2
+        touchpad.alpha = 0.8
         touchpad.isUserInteractionEnabled = false
+        
+        let touchpadDesign = SKSpriteNode(imageNamed: "touchpad_design")
+        
+        touchpad.addChild(touchpadDesign)
         
         addChild(touchpad)
     }

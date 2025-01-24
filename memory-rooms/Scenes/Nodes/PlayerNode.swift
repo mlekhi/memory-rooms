@@ -76,13 +76,13 @@ class Player: SKSpriteNode {
         let moveAction: SKAction
         
         if direction == "Up" {
-            moveAction = SKAction.move(by: CGVector(dx: 0, dy: 50), duration: 1)
+            moveAction = SKAction.move(by: CGVector(dx: 0, dy: 50), duration: 0.5)
         } else if direction == "Down" {
-            moveAction = SKAction.move(by: CGVector(dx: 0, dy: -50), duration: 1)
+            moveAction = SKAction.move(by: CGVector(dx: 0, dy: -50), duration: 0.5)
         } else if direction == "Left" {
-            moveAction = SKAction.move(by: CGVector(dx: -50, dy: 0), duration: 1)
+            moveAction = SKAction.move(by: CGVector(dx: -50, dy: 0), duration: 0.5)
         } else {
-            moveAction = SKAction.move(by: CGVector(dx: 50, dy: 0), duration: 1)
+            moveAction = SKAction.move(by: CGVector(dx: 50, dy: 0), duration: 0.5)
         }
         
         let repeatMoveAction = SKAction.repeatForever(moveAction)
