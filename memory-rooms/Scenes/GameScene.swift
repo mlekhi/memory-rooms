@@ -51,7 +51,7 @@ class GameScene: SKScene {
     private func createTouchpad() {
         let touchpadSize = CGSize(width: 150, height: 150)
         touchpad = SKShapeNode(rectOf: touchpadSize, cornerRadius: 10)
-        touchpad.position = CGPoint(x: size.width / 4, y: size.height / 4)
+        touchpad.position = CGPoint(x: size.width / 4, y: -500)
         touchpad.fillColor = .gray
         touchpad.alpha = 0.5
         touchpad.isUserInteractionEnabled = false
@@ -108,7 +108,6 @@ class GameScene: SKScene {
         
         print("\(direction)")
 
-        // Avoid redundant movement updates
         if currentDirection != direction {
             currentDirection = direction
             player.startWalking(direction: direction)
