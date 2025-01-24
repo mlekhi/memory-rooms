@@ -8,20 +8,48 @@
 import SpriteKit
 
 class Player: SKSpriteNode {
+    private var walkFrames: [SKTexture] = []
+
     init() {
-        let texture = SKTexture(imageNamed: "character_sprite")
-        super.init(texture: texture, color: .clear, size: CGSize(width: 70, height: 70))
-        self.position = CGPoint(x: 0, y: 0)
+        let texture = SKTexture(imageNamed: "character_idle")
+        super.init(texture: texture, color: .clear, size: texture.size())
+
+        loadWalkTextures()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private func loadWalkTextures() {
+        let walkAtlas = SKTextureAtlas(named: "PlayerWalk")
+        walkFrames = walkAtlas.textureNames
+            .sorted()
+            .map { walkAtlas.textureNamed($0) }
+    }
+
+    func startWalking() {
+        self.removeAction(forKey: "walking")
+        guard !walkFrames.isEmpty else {
+            return
+        }
+        let walkAction = SKAction.animate(with: walkFrames, timePerFrame: 0.1, resize: false, restore: true)
+        let repeatAction = SKAction.repeatForever(walkAction)
+        self.run(repeatAction, withKey: "walking")
+    }
+
+    func stopWalking() {
+        print("STOPPED WALKING")
+        self.removeAction(forKey: "walking")
+        self.texture = SKTexture(imageNamed: "character_idle")
+    }
+
     func moveToward(_ targetPosition: CGPoint, walls: [SKSpriteNode], speed: CGFloat = 300.0, stepSize: CGFloat = 5.0) {
         let dx = targetPosition.x - self.position.x
         let dy = targetPosition.y - self.position.y
         let distance = hypot(dx, dy)
+
+        guard distance > 0 else { return }
 
         let unitDx = dx / distance
         let unitDy = dy / distance
@@ -42,8 +70,14 @@ class Player: SKSpriteNode {
             currentPosition = nextPosition
         }
 
+        // start walking animation
+        startWalking()
+
         let moveAction = SKAction.move(to: currentPosition, duration: duration)
-        self.run(moveAction)
+
+        self.run(moveAction) {
+            self.stopWalking()
+        }
     }
 
     private func isMoveValid(to position: CGPoint, walls: [SKSpriteNode]) -> Bool {
