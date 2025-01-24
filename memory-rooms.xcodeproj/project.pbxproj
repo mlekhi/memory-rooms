@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180EA0AC2D43E4EE00AE4931 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180EA0AB2D43E4EE00AE4931 /* PhysicsCategory.swift */; };
 		18D8567D2D387DF200103644 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D8567C2D387DF200103644 /* AppDelegate.swift */; };
 		18D8567F2D387DF200103644 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18D8567E2D387DF200103644 /* GameScene.sks */; };
 		18D856812D387DF200103644 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18D856802D387DF200103644 /* Actions.sks */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180EA0AB2D43E4EE00AE4931 /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		18D856792D387DF200103644 /* memory-rooms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "memory-rooms.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D8567C2D387DF200103644 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18D8567E2D387DF200103644 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -52,7 +54,7 @@
 		18D856822D387DF200103644 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		18D856842D387DF200103644 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		18D856872D387DF200103644 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		18D856892D387DF300103644 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
+		18D856892D387DF300103644 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18D8568C2D387DF300103644 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18D856922D387DF300103644 /* memory-roomsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "memory-roomsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D856962D387DF300103644 /* memory_roomsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memory_roomsTests.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				18D856BF2D3B2F3300103644 /* PlayerNode.swift */,
+				180EA0AB2D43E4EE00AE4931 /* PhysicsCategory.swift */,
 				18D856C12D3B2F3F00103644 /* WallNode.swift */,
 				18D856C32D3B2F5700103644 /* ObjectNode.swift */,
 			);
@@ -353,6 +356,7 @@
 				18D856C02D3B2F3300103644 /* PlayerNode.swift in Sources */,
 				18D856C42D3B2F5700103644 /* ObjectNode.swift in Sources */,
 				18D8567D2D387DF200103644 /* AppDelegate.swift in Sources */,
+				180EA0AC2D43E4EE00AE4931 /* PhysicsCategory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
