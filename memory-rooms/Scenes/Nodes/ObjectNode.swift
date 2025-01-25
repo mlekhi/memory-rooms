@@ -10,9 +10,8 @@ import SpriteKit
 class GameObject: SKSpriteNode {
     var interactionText: String? // should this stay optional??
 
-    init(image: UIImage, position: CGPoint, interactionText: String? = nil) {
+    init(image: UIImage, size: CGSize, position: CGPoint, interactionText: String? = nil) {
         let texture = SKTexture(image: image)
-        let size = texture.size()
         super.init(texture: texture, color: .clear, size: size)
         self.position = position
         
@@ -20,9 +19,9 @@ class GameObject: SKSpriteNode {
 
         self.physicsBody = SKPhysicsBody(rectangleOf: size)
         self.physicsBody?.isDynamic = false
-        self.physicsBody?.categoryBitMask = 0
-        self.physicsBody?.collisionBitMask = 0
-        self.physicsBody?.contactTestBitMask = 0
+        self.physicsBody?.categoryBitMask = 0b0001 // Unique category
+        self.physicsBody?.collisionBitMask = 0b0010 // Collides with category 0b0010
+        self.physicsBody?.contactTestBitMask = 0b0010 // Detects contact with category 0b0010
         self.physicsBody?.restitution = 0.0
     }
 

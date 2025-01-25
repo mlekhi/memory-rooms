@@ -45,7 +45,7 @@ class GameScene: SKScene {
 
     private func addObject(image: String, size: CGSize, position: CGPoint) {
         if let exampleImage = UIImage(named: image) {
-            let gameObject = GameObject(image: exampleImage, position: position, interactionText: "test test")
+            let gameObject = GameObject(image: exampleImage, size: size, position: position, interactionText: "test test")
             objects.append(gameObject)
             addChild(gameObject)
         }
