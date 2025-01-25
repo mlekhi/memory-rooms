@@ -8,15 +8,12 @@
 import SpriteKit
 
 class GameObject: SKSpriteNode {
-    var interactionText: String? // should this stay optional??
 
-    init(image: UIImage, size: CGSize, position: CGPoint, interactionText: String? = nil) {
+    init(image: UIImage, size: CGSize, position: CGPoint) {
         let texture = SKTexture(image: image)
         super.init(texture: texture, color: .clear, size: size)
         self.position = position
         
-        self.interactionText = interactionText
-
         self.physicsBody = SKPhysicsBody(rectangleOf: size)
         self.physicsBody?.isDynamic = false
         self.physicsBody?.categoryBitMask = 2 // match the player class
@@ -28,12 +25,33 @@ class GameObject: SKSpriteNode {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+class InteractiveObject: GameObject {
+    var interactionText: String
+    var additionalImages: [UIImage]? // optional
+
+    init(image: UIImage, size: CGSize, position: CGPoint, interactionText: String, additionalImages: [UIImage]? = nil) {
+        self.interactionText = interactionText
+        self.additionalImages = additionalImages
+        super.init(image: image, size: size, position: position)
+
+        // Enable user interaction for this node
+        self.isUserInteractionEnabled = true
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let interactionText = interactionText {
-            print("interaction: \(interactionText)")
-        } else {
-            print("TOUCHEDDDDD")
+        // Print the interaction text when touched
+        print("Interaction: \(interactionText)")
+
+        // Handle additional images (example logic)
+        if let images = additionalImages, !images.isEmpty {
+            print("This object has additional images: \(images.count)")
+            // You can add custom logic to display or process the additional images
         }
     }
 }
