@@ -31,7 +31,7 @@ class GameScene: SKScene {
         addWall(color: .black, size: CGSize(width: 400, height: 20), position: CGPoint(x: 0, y: -400)) // South wall
         addWall(color: .black, size: CGSize(width: 20, height: 800), position: CGPoint(x: 200, y: 0)) // East wall
 
-        addObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: -50, y: 50))
+        addObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: -50, y: 200))
         addObject(image: "touchpad_design", size: CGSize(width: 30, height: 30), position: CGPoint(x: 50, y: -50))
         
         createTouchpad()

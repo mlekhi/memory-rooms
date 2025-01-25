@@ -19,9 +19,9 @@ class GameObject: SKSpriteNode {
 
         self.physicsBody = SKPhysicsBody(rectangleOf: size)
         self.physicsBody?.isDynamic = false
-        self.physicsBody?.categoryBitMask = 0b0001 // Unique category
-        self.physicsBody?.collisionBitMask = 0b0010 // Collides with category 0b0010
-        self.physicsBody?.contactTestBitMask = 0b0010 // Detects contact with category 0b0010
+        self.physicsBody?.categoryBitMask = 2 // match the player class
+        self.physicsBody?.collisionBitMask = 1 // match the player class
+        self.physicsBody?.contactTestBitMask = 1 
         self.physicsBody?.restitution = 0.0
     }
 
