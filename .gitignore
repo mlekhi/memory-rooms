@@ -5,3 +5,5 @@
 *.xcuserstate
 *.xcuserdatad/
 *.xcschememanagement.plist
+
+build/
