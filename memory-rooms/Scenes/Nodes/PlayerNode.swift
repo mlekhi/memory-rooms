@@ -100,29 +100,8 @@ class Player: SKSpriteNode {
         
         self.physicsBody?.velocity = CGVector(dx: dx, dy: dy)
     }
-
-//    func isMoveValid(to position: CGPoint, walls: [SKSpriteNode], objects: [GameObject]) -> Bool {
-//        let futureFrame = CGRect(
-//            x: position.x - self.size.width / 2,
-//            y: position.y - self.size.height / 2,
-//            width: self.size.width,
-//            height: self.size.height
-//        )
-//
-//        // Check collision with walls
-//        for wall in walls {
-//            if wall.frame.intersects(futureFrame) {
-//                return false
-//            }
-//        }
-//
-//        // Check collision with objects
-//        for object in objects {
-//            if object.frame.intersects(futureFrame) {
-//                return false
-//            }
-//        }
-//
-//        return true
-//    }
+    
+    func getFacingDirection() -> String {
+        return currentDirection
+    }
 }

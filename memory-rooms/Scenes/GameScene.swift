@@ -169,7 +169,6 @@ class GameScene: SKScene {
         if currentDirection != direction {
             currentDirection = direction
             player.startWalking(direction: direction)
-            return
         }
     }
     
@@ -177,9 +176,18 @@ class GameScene: SKScene {
         // gamepad interaction button location handling
         let buttonDx = location.x - gamepadButton.position.x
         let buttonDy = location.y - gamepadButton.position.y
+        
+        let absDx = abs(buttonDx)
+        let absDy = abs(buttonDy)
 
-        print("Interaction button clickeddddd")
-        return
+        
+        if absDx <= gamepadButton.frame.width / 2 && absDy <= gamepadButton.frame.height / 2 {
+            print("Interaction button clicked")
+            
+            // Check for InteractiveObject in the direction the player is facing
+            let facingDirection = player.getFacingDirection()
+            print("direction: \(facingDirection)")
+        }
 
     }
 
