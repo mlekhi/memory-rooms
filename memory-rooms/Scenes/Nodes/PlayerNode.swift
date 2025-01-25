@@ -9,10 +9,10 @@ import SpriteKit
 
 class Player: SKSpriteNode {
     private var walkFrames: [SKTexture] = []
-    private var currentDirection: String = "Idle"
+    private var currentDirection: String = "Down"
 
     init() {
-        let texture = SKTexture(imageNamed: "character_idle")
+        let texture = SKTexture(imageNamed: "character_down")
         super.init(texture: texture, color: .clear, size: texture.size())
         
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
@@ -73,7 +73,22 @@ class Player: SKSpriteNode {
         print("STOPPED WALKING")
         self.removeAction(forKey: "walking")
         self.physicsBody?.velocity = .zero
-        self.texture = SKTexture(imageNamed: "character_idle")
+        
+        let idleTextureName: String
+        switch currentDirection {
+        case "Up":
+            idleTextureName = "character_up"
+        case "Down":
+            idleTextureName = "character_down"
+        case "Left":
+            idleTextureName = "character_left"
+        case "Right":
+            idleTextureName = "character_right"
+        default:
+            idleTextureName = "character_down" // Default to Down
+        }
+
+        self.texture = SKTexture(imageNamed: idleTextureName)
     }
 
     func moveToward(direction: String) {
