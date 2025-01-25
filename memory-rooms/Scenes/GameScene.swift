@@ -31,9 +31,8 @@ class GameScene: SKScene {
         addWall(color: .black, size: CGSize(width: 400, height: 20), position: CGPoint(x: 0, y: -400)) // South wall
         addWall(color: .black, size: CGSize(width: 20, height: 800), position: CGPoint(x: 200, y: 0)) // East wall
 
-//        // Add objects
-//        addObject(color: .green, size: CGSize(width: 50, height: 50), position: CGPoint(x: -50, y: 50))
-//        addObject(color: .yellow, size: CGSize(width: 30, height: 30), position: CGPoint(x: 50, y: -50))
+        addObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: -50, y: 50))
+        addObject(image: "touchpad_design", size: CGSize(width: 30, height: 30), position: CGPoint(x: 50, y: -50))
         
         createTouchpad()
     }
@@ -44,11 +43,13 @@ class GameScene: SKScene {
         addChild(wall)
     }
 
-//    private func addObject(color: UIColor, size: CGSize, position: CGPoint) {
-//        let object = GameObject(color: color, size: size, position: position)
-//        objects.append(object)
-//        addChild(object)
-//    }
+    private func addObject(image: String, size: CGSize, position: CGPoint) {
+        if let exampleImage = UIImage(named: image) {
+            let gameObject = GameObject(image: exampleImage, position: position, interactionText: "test test")
+            objects.append(gameObject)
+            addChild(gameObject)
+        }
+    }
     
     private func createTouchpad() {
         // base of touchpad
@@ -74,7 +75,7 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             
             if touchpad.contains(location) {
-                print("TOUCH HANDLING ON TOUCHPAD")
+//                print("TOUCH HANDLING ON TOUCHPAD")
                 handleTouch(location: location)
                 
             }
