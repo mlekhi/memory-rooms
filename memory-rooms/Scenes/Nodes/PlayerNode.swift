@@ -44,11 +44,10 @@ class Player: SKSpriteNode {
         }
         
         let walkAtlas = SKTextureAtlas(named: atlasName)
-        print("walkAtlas: \(walkAtlas)")
         walkFrames = walkAtlas.textureNames
             .sorted()
             .map { walkAtlas.textureNamed($0) }
-        print("Loaded frames: \(walkFrames.map { $0.description })")
+//        print("Loaded frames: \(walkFrames.map { $0.description })")
     }
 
     func startWalking(direction: String) {
@@ -67,7 +66,6 @@ class Player: SKSpriteNode {
         
         self.run(repeatAction, withKey: "walking")
         
-        print("calling movetoward")
         moveToward(direction: direction)
     }
 
@@ -79,7 +77,7 @@ class Player: SKSpriteNode {
     }
 
     func moveToward(direction: String) {
-        print("move toward started with \(direction)")
+//        print("move toward started with direction: \(direction)")
         
         self.removeAction(forKey: "moving")
         
