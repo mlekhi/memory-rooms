@@ -17,6 +17,8 @@ class Wall: SKSpriteNode {
         self.physicsBody?.categoryBitMask = 2
         self.physicsBody?.collisionBitMask = 1
         self.physicsBody?.contactTestBitMask = 1
+        self.physicsBody?.restitution = 0.0
+
     }
 
     required init?(coder aDecoder: NSCoder) {

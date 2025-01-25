@@ -21,6 +21,7 @@ class Player: SKSpriteNode {
         self.physicsBody?.categoryBitMask = 1
         self.physicsBody?.collisionBitMask = 2
         self.physicsBody?.contactTestBitMask = 2
+        self.physicsBody?.restitution = 0.0
 
         loadWalkTextures(direction: "Fwd")
     }
