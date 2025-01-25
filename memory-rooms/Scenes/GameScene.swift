@@ -184,11 +184,45 @@ class GameScene: SKScene {
         if absDx <= gamepadButton.frame.width / 2 && absDy <= gamepadButton.frame.height / 2 {
             print("Interaction button clicked")
             
-            // Check for InteractiveObject in the direction the player is facing
             let facingDirection = player.getFacingDirection()
             print("direction: \(facingDirection)")
+            
+            if let interactiveObject = findInteractiveObject(direction: facingDirection) {
+                print("Interaction: \(interactiveObject.interactionText)")
+            } else {
+                print("No interactive object in front of the player.")
+            }
         }
 
     }
+    
+    private func findInteractiveObject(direction: String) -> InteractiveObject? {
+        let interactionRange: CGFloat = 50.0 // ADJUSTTTTT
+        
+        var futureFrame = player.frame
+        switch direction {
+        case "Up":
+            futureFrame.origin.y += interactionRange
+        case "Down":
+            futureFrame.origin.y -= interactionRange
+        case "Left":
+            futureFrame.origin.x -= interactionRange
+        case "Right":
+            futureFrame.origin.x += interactionRange
+        default:
+            break
+        }
+
+        for node in children {
+            if let interactiveObject = node as? InteractiveObject {
+                if futureFrame.intersects(interactiveObject.frame) {
+                    return interactiveObject
+                }
+            }
+        }
+
+        return nil
+    }
+
 
 }
