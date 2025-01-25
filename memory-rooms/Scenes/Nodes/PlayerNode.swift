@@ -14,6 +14,13 @@ class Player: SKSpriteNode {
     init() {
         let texture = SKTexture(imageNamed: "character_idle")
         super.init(texture: texture, color: .clear, size: texture.size())
+        
+        self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
+        self.physicsBody?.isDynamic = true
+        self.physicsBody?.allowsRotation = false
+        self.physicsBody?.categoryBitMask = 1
+        self.physicsBody?.collisionBitMask = 2
+        self.physicsBody?.contactTestBitMask = 2
 
         loadWalkTextures(direction: "Fwd")
     }
@@ -66,29 +73,33 @@ class Player: SKSpriteNode {
     func stopWalking() {
         print("STOPPED WALKING")
         self.removeAction(forKey: "walking")
-        self.removeAction(forKey: "moving")
+        self.physicsBody?.velocity = .zero
         self.texture = SKTexture(imageNamed: "character_idle")
     }
 
-    func moveToward(direction: String/*, walls: [SKSpriteNode], objects: [GameObject]*/) {
+    func moveToward(direction: String) {
         print("move toward started with \(direction)")
         
-        let moveAction: SKAction
+        self.removeAction(forKey: "moving")
         
-        if direction == "Up" {
-            moveAction = SKAction.move(by: CGVector(dx: 0, dy: 50), duration: 0.5)
-        } else if direction == "Down" {
-            moveAction = SKAction.move(by: CGVector(dx: 0, dy: -50), duration: 0.5)
-        } else if direction == "Left" {
-            moveAction = SKAction.move(by: CGVector(dx: -50, dy: 0), duration: 0.5)
-        } else {
-            moveAction = SKAction.move(by: CGVector(dx: 50, dy: 0), duration: 0.5)
+        let velocity: CGFloat = 200.0 // Adjust speed as needed
+        var dx: CGFloat = 0
+        var dy: CGFloat = 0
+        
+        switch direction {
+        case "Up":
+            dy = velocity
+        case "Down":
+            dy = -velocity
+        case "Left":
+            dx = -velocity
+        case "Right":
+            dx = velocity
+        default:
+            break
         }
         
-        let repeatMoveAction = SKAction.repeatForever(moveAction)
-        
-        // Start the movement action
-        self.run(repeatMoveAction, withKey: "moving")
+        self.physicsBody?.velocity = CGVector(dx: dx, dy: dy)
     }
 
 //    func isMoveValid(to position: CGPoint, walls: [SKSpriteNode], objects: [GameObject]) -> Bool {

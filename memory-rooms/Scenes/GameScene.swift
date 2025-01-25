@@ -18,6 +18,8 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
+        
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
 
         // Add the player
         player = Player()
