@@ -9,10 +9,10 @@ import SpriteKit
 
 class Player: SKSpriteNode {
     private var walkFrames: [SKTexture] = []
-    private var currentDirection: String = "Idle"
+    private var currentDirection: String = "Down"
 
     init() {
-        let texture = SKTexture(imageNamed: "character_idle")
+        let texture = SKTexture(imageNamed: "character_down")
         super.init(texture: texture, color: .clear, size: texture.size())
         
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
@@ -73,7 +73,22 @@ class Player: SKSpriteNode {
         print("STOPPED WALKING")
         self.removeAction(forKey: "walking")
         self.physicsBody?.velocity = .zero
-        self.texture = SKTexture(imageNamed: "character_idle")
+        
+        let idleTextureName: String
+        switch currentDirection {
+        case "Up":
+            idleTextureName = "character_up"
+        case "Down":
+            idleTextureName = "character_down"
+        case "Left":
+            idleTextureName = "character_left"
+        case "Right":
+            idleTextureName = "character_right"
+        default:
+            idleTextureName = "character_down" // Default to Down
+        }
+
+        self.texture = SKTexture(imageNamed: idleTextureName)
     }
 
     func moveToward(direction: String) {
@@ -100,29 +115,8 @@ class Player: SKSpriteNode {
         
         self.physicsBody?.velocity = CGVector(dx: dx, dy: dy)
     }
-
-//    func isMoveValid(to position: CGPoint, walls: [SKSpriteNode], objects: [GameObject]) -> Bool {
-//        let futureFrame = CGRect(
-//            x: position.x - self.size.width / 2,
-//            y: position.y - self.size.height / 2,
-//            width: self.size.width,
-//            height: self.size.height
-//        )
-//
-//        // Check collision with walls
-//        for wall in walls {
-//            if wall.frame.intersects(futureFrame) {
-//                return false
-//            }
-//        }
-//
-//        // Check collision with objects
-//        for object in objects {
-//            if object.frame.intersects(futureFrame) {
-//                return false
-//            }
-//        }
-//
-//        return true
-//    }
+    
+    func getFacingDirection() -> String {
+        return currentDirection
+    }
 }
