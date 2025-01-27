@@ -15,14 +15,19 @@ class GameScene: SKScene {
     
     private var touchpad: SKShapeNode!
     private var gamepadButton: SKShapeNode!
+    private var currentDirection: String? = nil
+
     private var textField: SKShapeNode!
     private var textLabel: SKLabelNode?
-    
-    private var currentDirection: String? = nil
     private var interactionTexts: [String] = []
     private var currentTextIndex: Int = 0
     private var isTextFieldVisible: Bool = false
-    
+
+    private var imageField: SKShapeNode?
+    private var imageNodes: [SKSpriteNode] = []
+    private var currentImageIndex: Int = 0
+    private var isImageFieldVisible: Bool = false
+
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
@@ -33,15 +38,23 @@ class GameScene: SKScene {
         addChild(player)
 
         // Add walls
-        addWall(color: .black, size: CGSize(width: 420, height: 20), position: CGPoint(x: 0, y: 500)) // North wall
-        addWall(color: .black, size: CGSize(width: 20, height: 800), position: CGPoint(x: -200, y: 100)) // West wall
-        addWall(color: .black, size: CGSize(width: 420, height: 20), position: CGPoint(x: 0, y: -300)) // South wall
-        addWall(color: .black, size: CGSize(width: 20, height: 800), position: CGPoint(x: 200, y: 100)) // East wall
+        addWall(color: .black, size: CGSize(width: 520, height: 20), position: CGPoint(x: 0, y: 500)) // North wall
+        addWall(color: .black, size: CGSize(width: 20, height: 800), position: CGPoint(x: -250, y: 100)) // West wall
+        addWall(color: .black, size: CGSize(width: 520, height: 20), position: CGPoint(x: 0, y: -300)) // South wall
+        addWall(color: .black, size: CGSize(width: 20, height: 800), position: CGPoint(x: 250, y: 100)) // East wall
 
         // add objects here
         addStaticObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: -50, y: 200))
         addStaticObject(image: "touchpad_design", size: CGSize(width: 30, height: 30), position: CGPoint(x: 50, y: -50))
-        addInteractiveObject(image: "touchpad_design", size: CGSize(width: 30, height: 30), position: CGPoint(x: 50, y: -50), interactionText: "hi! something romantic here")
+        addInteractiveObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: 100, y: -50), interactionText: "hi! something romantic here")
+        
+        
+        let additionalImages: [UIImage] = [
+            UIImage(named: "AppIcon")!,
+            UIImage(named: "AppIcon")!,
+            UIImage(named: "AppIcon")!
+        ]
+        addInteractiveObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: 100, y: 100), interactionText: "this one has images", additionalImages: additionalImages)
 
         createGamepad()
     }
@@ -65,7 +78,7 @@ class GameScene: SKScene {
     }
     
     private func addInteractiveObject(image: String, size: CGSize, position: CGPoint, interactionText: String, additionalImages: [UIImage]? = nil) {
-        // Load the main image
+        // Load the object image
         guard let objectImage = UIImage(named: image) else {
             print("Error: Image \(image) not found!")
             return
@@ -114,7 +127,7 @@ class GameScene: SKScene {
     }
     
     private func showTextField(textInput: String) {
-        // replace with custom image eventuallyt
+        // replace with custom image eventually
         interactionTexts = textInput.components(separatedBy: ". ").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
         currentTextIndex = 0
 
@@ -129,7 +142,7 @@ class GameScene: SKScene {
 
         // Create and set up the label
         textLabel = SKLabelNode(text: interactionTexts[currentTextIndex])
-        textLabel?.fontName = "Helvetica"
+        textLabel?.fontName = "VT323" // TEXT FONT NOT WORKING!
         textLabel?.fontSize = 24
         textLabel?.fontColor = .black
         textLabel?.position = CGPoint(x: 0, y: -12)
@@ -157,6 +170,70 @@ class GameScene: SKScene {
         textLabel?.removeFromParent()
         isTextFieldVisible = false
     }
+    
+    private func showImages(images: [UIImage]) {
+        // Initialize the image field if not already created
+        let imageFieldSize = CGSize(width: 600, height: 800)
+        imageField = SKShapeNode(rectOf: imageFieldSize, cornerRadius: 5)
+        imageField?.position = CGPoint(x: frame.midX, y: 100)
+        imageField?.fillColor = .clear
+        imageField?.strokeColor = .gray
+        imageField?.lineWidth = 2
+        imageField?.alpha = 0.8
+        imageField?.isUserInteractionEnabled = false
+
+        if let imageField = imageField {
+            addChild(imageField)
+        }
+
+        isImageFieldVisible = true
+        currentImageIndex = 0 // Reset to the start of the array
+        displayImageSet(images: images)
+    }
+
+    private func displayImageSet(images: [UIImage]) {
+        // Remove previous image nodes
+        for node in imageNodes {
+            node.removeFromParent()
+        }
+        imageNodes.removeAll()
+
+        let maxImagesToShow = 3
+        let endIndex = min(currentImageIndex + maxImagesToShow, images.count)
+        let imagesToShow = Array(images[currentImageIndex..<endIndex])
+
+        for (index, image) in imagesToShow.enumerated() {
+            let texture = SKTexture(image: image)
+            let spriteNode = SKSpriteNode(texture: texture)
+
+            let fieldWidth = imageField?.frame.width ?? 500
+            let fieldHeight = imageField?.frame.height ?? 200
+            let randomX = CGFloat.random(in: -fieldWidth / 2...fieldWidth / 2)
+            let randomY = CGFloat.random(in: -fieldHeight / 2...fieldHeight / 2)
+            spriteNode.position = CGPoint(x: randomX, y: randomY) // Relative to the imageField
+            spriteNode.size = CGSize(width: 200, height: 300)
+
+            imageField?.addChild(spriteNode)
+            imageNodes.append(spriteNode)
+        }
+    }
+
+    private func updateImages(images: [UIImage]) {
+        currentImageIndex += 3
+
+        // check if all images have been shown
+        if currentImageIndex >= images.count {
+            hideImageField()
+        } else {
+            displayImageSet(images: images)
+        }
+    }
+
+    private func hideImageField() {
+        imageField?.removeFromParent()
+        imageNodes.removeAll()
+        isImageFieldVisible = false
+    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("TOUCHES RECIEVED")
@@ -164,12 +241,10 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             
             if touchpad.contains(location) {
-//                print("TOUCH HANDLING ON TOUCHPAD")
                 handleWalk(location: location)
                 
             }
             if gamepadButton.contains(location) {
-//                print("TOUCH HANDLING ON TOUCHPAD")
                 handlePress(location: location)
                 
             }
@@ -241,7 +316,12 @@ class GameScene: SKScene {
                 updateTextField()
             } else if let interactiveObject = findInteractiveObject(direction: facingDirection) {
                 showTextField(textInput: interactiveObject.interactionText)
-                print("Interaction: \(interactiveObject.interactionText)")
+//                print("\(interactiveObject.interactionText)")
+
+                if let images = interactiveObject.additionalImages, !images.isEmpty {
+                    showImages(images: images)
+                    print("displaying images")
+                }
             } else {
                 print("No interactive object ahead")
             }
