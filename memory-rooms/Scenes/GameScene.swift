@@ -15,7 +15,13 @@ class GameScene: SKScene {
     
     private var touchpad: SKShapeNode!
     private var gamepadButton: SKShapeNode!
+    private var textField: SKShapeNode!
+    private var textLabel: SKLabelNode?
+    
     private var currentDirection: String? = nil
+    private var interactionTexts: [String] = []
+    private var currentTextIndex: Int = 0
+    private var isTextFieldVisible: Bool = false
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
@@ -27,10 +33,10 @@ class GameScene: SKScene {
         addChild(player)
 
         // Add walls
-        addWall(color: .black, size: CGSize(width: 400, height: 20), position: CGPoint(x: 0, y: 400)) // North wall
-        addWall(color: .black, size: CGSize(width: 20, height: 800), position: CGPoint(x: -200, y: 0)) // West wall
-        addWall(color: .black, size: CGSize(width: 400, height: 20), position: CGPoint(x: 0, y: -400)) // South wall
-        addWall(color: .black, size: CGSize(width: 20, height: 800), position: CGPoint(x: 200, y: 0)) // East wall
+        addWall(color: .black, size: CGSize(width: 420, height: 20), position: CGPoint(x: 0, y: 500)) // North wall
+        addWall(color: .black, size: CGSize(width: 20, height: 800), position: CGPoint(x: -200, y: 100)) // West wall
+        addWall(color: .black, size: CGSize(width: 420, height: 20), position: CGPoint(x: 0, y: -300)) // South wall
+        addWall(color: .black, size: CGSize(width: 20, height: 800), position: CGPoint(x: 200, y: 100)) // East wall
 
         // add objects here
         addStaticObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: -50, y: 200))
@@ -74,7 +80,7 @@ class GameScene: SKScene {
         // base of touchpad
         let touchpadSize = CGSize(width: 100, height: 100)
         touchpad = SKShapeNode(rectOf: touchpadSize, cornerRadius: 10)
-        touchpad.position = CGPoint(x: -size.width / 4, y: -500)
+        touchpad.position = CGPoint(x: -size.width / 4, y: -550)
         touchpad.fillColor = .clear
         touchpad.strokeColor = .clear
         touchpad.lineWidth = 2
@@ -92,7 +98,7 @@ class GameScene: SKScene {
         // interaction button
         let buttonSize = CGSize(width: 50, height: 50)
         gamepadButton = SKShapeNode(rectOf: buttonSize, cornerRadius: 10)
-        gamepadButton.position = CGPoint(x: size.width / 4, y: -500)
+        gamepadButton.position = CGPoint(x: size.width / 4, y: -550)
         gamepadButton.fillColor = .clear
         gamepadButton.strokeColor = .clear
         gamepadButton.lineWidth = 2
@@ -105,6 +111,51 @@ class GameScene: SKScene {
         gamepadButton.addChild(buttonDesign)
         
         addChild(gamepadButton)
+    }
+    
+    private func showTextField(textInput: String) {
+        // replace with custom image eventuallyt
+        interactionTexts = textInput.components(separatedBy: ". ").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+        currentTextIndex = 0
+
+        let textFieldSize = CGSize(width: 500, height: 100)
+        textField = SKShapeNode(rectOf: textFieldSize, cornerRadius: 5)
+        textField?.position = CGPoint(x: frame.midX, y: -400)
+        textField?.fillColor = .white
+        textField?.strokeColor = .gray
+        textField?.lineWidth = 2
+        textField?.alpha = 0.8
+        textField?.isUserInteractionEnabled = false
+
+        // Create and set up the label
+        textLabel = SKLabelNode(text: interactionTexts[currentTextIndex])
+        textLabel?.fontName = "Helvetica"
+        textLabel?.fontSize = 24
+        textLabel?.fontColor = .black
+        textLabel?.position = CGPoint(x: 0, y: -12)
+        textLabel?.horizontalAlignmentMode = .center
+        textLabel?.verticalAlignmentMode = .center
+
+        if let textField = textField, let textLabel = textLabel {
+            textField.addChild(textLabel)
+            addChild(textField)
+            isTextFieldVisible = true
+        }
+    }
+
+    private func updateTextField() {
+        currentTextIndex += 1
+        if currentTextIndex < interactionTexts.count {
+            textLabel?.text = interactionTexts[currentTextIndex]
+        } else {
+            hideTextField()
+        }
+    }
+
+    private func hideTextField() {
+        textField?.removeFromParent()
+        textLabel?.removeFromParent()
+        isTextFieldVisible = false
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -176,28 +227,29 @@ class GameScene: SKScene {
         // gamepad interaction button location handling
         let buttonDx = location.x - gamepadButton.position.x
         let buttonDy = location.y - gamepadButton.position.y
-        
+
         let absDx = abs(buttonDx)
         let absDy = abs(buttonDy)
 
-        
         if absDx <= gamepadButton.frame.width / 2 && absDy <= gamepadButton.frame.height / 2 {
             print("Interaction button clicked")
             
             let facingDirection = player.getFacingDirection()
             print("direction: \(facingDirection)")
             
-            if let interactiveObject = findInteractiveObject(direction: facingDirection) {
+            if isTextFieldVisible {
+                updateTextField()
+            } else if let interactiveObject = findInteractiveObject(direction: facingDirection) {
+                showTextField(textInput: interactiveObject.interactionText)
                 print("Interaction: \(interactiveObject.interactionText)")
             } else {
-                print("No interactive object in front of the player.")
+                print("No interactive object ahead")
             }
         }
-
     }
     
     private func findInteractiveObject(direction: String) -> InteractiveObject? {
-        let interactionRange: CGFloat = 50.0 // ADJUSTTTTT
+        let interactionRange: CGFloat = 25.0 // ADJUSTTTTT
         
         var futureFrame = player.frame
         switch direction {
