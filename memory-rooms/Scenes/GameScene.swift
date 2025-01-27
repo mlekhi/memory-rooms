@@ -50,9 +50,9 @@ class GameScene: SKScene {
         
         
         let additionalImages: [UIImage] = [
-            UIImage(named: "AppIcon")!,
-            UIImage(named: "AppIcon")!,
-            UIImage(named: "AppIcon")!
+            UIImage(named: "polaroid_frame")!,
+            UIImage(named: "polaroid_frame")!,
+            UIImage(named: "polaroid_frame")!
         ]
         addInteractiveObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: 100, y: 100), interactionText: "this one has images", additionalImages: additionalImages)
 
@@ -190,28 +190,39 @@ class GameScene: SKScene {
         currentImageIndex = 0 // Reset to the start of the array
         displayImageSet(images: images)
     }
-
     private func displayImageSet(images: [UIImage]) {
-        // Remove previous image nodes
         for node in imageNodes {
             node.removeFromParent()
         }
         imageNodes.removeAll()
 
-        let maxImagesToShow = 3
-        let endIndex = min(currentImageIndex + maxImagesToShow, images.count)
-        let imagesToShow = Array(images[currentImageIndex..<endIndex])
+        // fixed positions
+        let placements: [[(position: CGPoint, size: CGSize, rotation: CGFloat)]] = [
+            [(CGPoint(x: 0, y: 0), CGSize(width: 300, height: 400), 0)], // 1 image
+            [
+                (CGPoint(x: -100, y: 0), CGSize(width: 200, height: 300), .pi / 12),
+                (CGPoint(x: 100, y: 0), CGSize(width: 200, height: 300), -.pi / 12)
+            ], // 2 images
+            [
+                (CGPoint(x: -150, y: 200), CGSize(width: 250, height: 350), -.pi / 8),
+                (CGPoint(x: 100, y: -50), CGSize(width: 250, height: 350), .pi / 12),
+                (CGPoint(x: -150, y: -250), CGSize(width: 250, height: 350), -.pi / 12),
+            ] // 3 images
+        ]
 
-        for (index, image) in imagesToShow.enumerated() {
+        let numImages = min(images.count, 3)
+        let layout = placements[numImages - 1]
+
+        for (index, image) in images.enumerated() {
+            guard index < layout.count else { break }
+
+            let (position, size, rotation) = layout[index]
             let texture = SKTexture(image: image)
             let spriteNode = SKSpriteNode(texture: texture)
 
-            let fieldWidth = imageField?.frame.width ?? 500
-            let fieldHeight = imageField?.frame.height ?? 200
-            let randomX = CGFloat.random(in: -fieldWidth / 2...fieldWidth / 2)
-            let randomY = CGFloat.random(in: -fieldHeight / 2...fieldHeight / 2)
-            spriteNode.position = CGPoint(x: randomX, y: randomY) // Relative to the imageField
-            spriteNode.size = CGSize(width: 200, height: 300)
+            spriteNode.position = position
+            spriteNode.size = size
+            spriteNode.zRotation = rotation
 
             imageField?.addChild(spriteNode)
             imageNodes.append(spriteNode)
@@ -219,14 +230,7 @@ class GameScene: SKScene {
     }
 
     private func updateImages(images: [UIImage]) {
-        currentImageIndex += 3
-
-        // check if all images have been shown
-        if currentImageIndex >= images.count {
-            hideImageField()
-        } else {
-            displayImageSet(images: images)
-        }
+        displayImageSet(images: images)
     }
 
     private func hideImageField() {
@@ -234,6 +238,7 @@ class GameScene: SKScene {
         imageNodes.removeAll()
         isImageFieldVisible = false
     }
+
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("TOUCHES RECIEVED")
