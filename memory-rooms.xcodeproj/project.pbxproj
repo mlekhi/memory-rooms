@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		180EA0AC2D43E4EE00AE4931 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180EA0AB2D43E4EE00AE4931 /* PhysicsCategory.swift */; };
+		18CA5B9B2D4916390030D5CF /* CustomTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18CA5B992D4916390030D5CF /* CustomTileSet.sks */; };
 		18D8567D2D387DF200103644 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D8567C2D387DF200103644 /* AppDelegate.swift */; };
 		18D8567F2D387DF200103644 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18D8567E2D387DF200103644 /* GameScene.sks */; };
 		18D856812D387DF200103644 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18D856802D387DF200103644 /* Actions.sks */; };
@@ -25,7 +26,6 @@
 		18D856C42D3B2F5700103644 /* ObjectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D856C32D3B2F5700103644 /* ObjectNode.swift */; };
 		18D856C72D3B2FB300103644 /* 8-Bit Coin Sound Effect (Copyright Free).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 18D856C52D3B2FB300103644 /* 8-Bit Coin Sound Effect (Copyright Free).mp3 */; };
 		18D856C82D3B2FB300103644 /* 8-Bit Powerup Sound Effects (Copyright Free).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 18D856C62D3B2FB300103644 /* 8-Bit Powerup Sound Effects (Copyright Free).mp3 */; };
-		18D856D12D3B34CE00103644 /* MyTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18D856CF2D3B34CE00103644 /* MyTileSet.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		180EA0AB2D43E4EE00AE4931 /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
+		18CA5B992D4916390030D5CF /* CustomTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CustomTileSet.sks; sourceTree = "<group>"; };
 		18D856792D387DF200103644 /* memory-rooms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "memory-rooms.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D8567C2D387DF200103644 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18D8567E2D387DF200103644 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -68,7 +69,6 @@
 		18D856C32D3B2F5700103644 /* ObjectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectNode.swift; sourceTree = "<group>"; };
 		18D856C52D3B2FB300103644 /* 8-Bit Coin Sound Effect (Copyright Free).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "8-Bit Coin Sound Effect (Copyright Free).mp3"; sourceTree = "<group>"; };
 		18D856C62D3B2FB300103644 /* 8-Bit Powerup Sound Effects (Copyright Free).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "8-Bit Powerup Sound Effects (Copyright Free).mp3"; sourceTree = "<group>"; };
-		18D856CF2D3B34CE00103644 /* MyTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyTileSet.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +124,7 @@
 				18D856B62D3B2A8000103644 /* Controllers */,
 				18D856802D387DF200103644 /* Actions.sks */,
 				18D8567E2D387DF200103644 /* GameScene.sks */,
-				18D856CF2D3B34CE00103644 /* MyTileSet.sks */,
+				18CA5B992D4916390030D5CF /* CustomTileSet.sks */,
 				18D856B92D3B2D2C00103644 /* Resources */,
 			);
 			path = "memory-rooms";
@@ -318,7 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18D856BD2D3B2DDC00103644 /* wall hit.mp3 in Resources */,
-				18D856D12D3B34CE00103644 /* MyTileSet.sks in Resources */,
+				18CA5B9B2D4916390030D5CF /* CustomTileSet.sks in Resources */,
 				18D856C82D3B2FB300103644 /* 8-Bit Powerup Sound Effects (Copyright Free).mp3 in Resources */,
 				18D8567F2D387DF200103644 /* GameScene.sks in Resources */,
 				18D856882D387DF200103644 /* Base in Resources */,

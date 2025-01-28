@@ -32,16 +32,36 @@ class GameScene: SKScene {
         player = Player()
         addChild(player)
 
+        let customWallColor = UIColor(red: 144/255, green: 133/255, blue: 112/255, alpha: 1.0) // aka #A07A52
         // Add walls
+<<<<<<< Updated upstream
         addWall(color: .black, size: CGSize(width: 420, height: 20), position: CGPoint(x: 0, y: 500)) // North wall
         addWall(color: .black, size: CGSize(width: 20, height: 800), position: CGPoint(x: -200, y: 100)) // West wall
         addWall(color: .black, size: CGSize(width: 420, height: 20), position: CGPoint(x: 0, y: -300)) // South wall
         addWall(color: .black, size: CGSize(width: 20, height: 800), position: CGPoint(x: 200, y: 100)) // East wall
+=======
+        addWall(color: customWallColor, size: CGSize(width: 520, height: 20), position: CGPoint(x: 0, y: 500)) // North wall
+        addWall(color: customWallColor, size: CGSize(width: 20, height: 825), position: CGPoint(x: -250, y: 90)) // West wall
+        addWall(color: customWallColor, size: CGSize(width: 520, height: 20), position: CGPoint(x: 0, y: -325)) // South wall
+        addWall(color: customWallColor, size: CGSize(width: 20, height: 825), position: CGPoint(x: 250, y: 90)) // East wall
+>>>>>>> Stashed changes
 
         // add objects here
         addStaticObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: -50, y: 200))
         addStaticObject(image: "touchpad_design", size: CGSize(width: 30, height: 30), position: CGPoint(x: 50, y: -50))
+<<<<<<< Updated upstream
         addInteractiveObject(image: "touchpad_design", size: CGSize(width: 30, height: 30), position: CGPoint(x: 50, y: -50), interactionText: "hi! something romantic here")
+=======
+        addInteractiveObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: 100, y: -50), interactionText: "hi! something romantic here")
+        
+        
+        let additionalImages: [UIImage] = [
+            UIImage(named: "touchpad_design")!,
+            UIImage(named: "touchpad_design")!,
+            UIImage(named: "touchpad_design")!
+        ]
+        addInteractiveObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: 100, y: 100), interactionText: "this one has images", additionalImages: additionalImages)
+>>>>>>> Stashed changes
 
         createGamepad()
     }
@@ -53,10 +73,6 @@ class GameScene: SKScene {
     }
 
     private func addStaticObject(image: String, size: CGSize, position: CGPoint) {
-        guard let objectImage = UIImage(named: image) else {
-            print("Error: Image \(image) not found!")
-            return
-        }
         if let objectImage = UIImage(named: image) {
             let gameObject = GameObject(image: objectImage, size: size, position: position)
             objects.append(gameObject)
@@ -241,7 +257,14 @@ class GameScene: SKScene {
                 updateTextField()
             } else if let interactiveObject = findInteractiveObject(direction: facingDirection) {
                 showTextField(textInput: interactiveObject.interactionText)
+<<<<<<< Updated upstream
                 print("Interaction: \(interactiveObject.interactionText)")
+=======
+
+                if let images = interactiveObject.additionalImages, !images.isEmpty {
+                    showImages(images: images)
+                }
+>>>>>>> Stashed changes
             } else {
                 print("No interactive object ahead")
             }
