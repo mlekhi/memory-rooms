@@ -50,9 +50,9 @@ class GameScene: SKScene {
         
         
         let additionalImages: [UIImage] = [
-            UIImage(named: "polaroid_frame")!,
-            UIImage(named: "polaroid_frame")!,
-            UIImage(named: "polaroid_frame")!
+            UIImage(named: "touchpad_design")!,
+            UIImage(named: "touchpad_design")!,
+            UIImage(named: "touchpad_design")!
         ]
         addInteractiveObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: 100, y: 100), interactionText: "this one has images", additionalImages: additionalImages)
 
@@ -162,6 +162,7 @@ class GameScene: SKScene {
             textLabel?.text = interactionTexts[currentTextIndex]
         } else {
             hideTextField()
+            hideImageField()
         }
     }
 
@@ -174,11 +175,10 @@ class GameScene: SKScene {
     private func showImages(images: [UIImage]) {
         // Initialize the image field if not already created
         let imageFieldSize = CGSize(width: 600, height: 800)
-        imageField = SKShapeNode(rectOf: imageFieldSize, cornerRadius: 5)
+        imageField = SKShapeNode(rectOf: imageFieldSize)
         imageField?.position = CGPoint(x: frame.midX, y: 100)
         imageField?.fillColor = .clear
-        imageField?.strokeColor = .gray
-        imageField?.lineWidth = 2
+        imageField?.strokeColor = .clear
         imageField?.alpha = 0.8
         imageField?.isUserInteractionEnabled = false
 
@@ -223,14 +223,20 @@ class GameScene: SKScene {
             spriteNode.position = position
             spriteNode.size = size
             spriteNode.zRotation = rotation
+            spriteNode.zPosition = 10
 
+            let frameTexture = SKTexture(imageNamed: "polaroid_frame")
+            let frameNode = SKSpriteNode(texture: frameTexture)
+            frameNode.position = position
+            frameNode.size = CGSize(width: size.width + 20, height: size.height + 20)
+            frameNode.zRotation = rotation
+            frameNode.zPosition = 9
+            
+            imageField?.addChild(frameNode)
             imageField?.addChild(spriteNode)
+            
             imageNodes.append(spriteNode)
         }
-    }
-
-    private func updateImages(images: [UIImage]) {
-        displayImageSet(images: images)
     }
 
     private func hideImageField() {
@@ -321,7 +327,6 @@ class GameScene: SKScene {
                 updateTextField()
             } else if let interactiveObject = findInteractiveObject(direction: facingDirection) {
                 showTextField(textInput: interactiveObject.interactionText)
-//                print("\(interactiveObject.interactionText)")
 
                 if let images = interactiveObject.additionalImages, !images.isEmpty {
                     showImages(images: images)
