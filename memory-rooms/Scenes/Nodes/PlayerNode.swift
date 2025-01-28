@@ -70,7 +70,7 @@ class Player: SKSpriteNode {
     }
 
     func stopWalking() {
-        print("STOPPED WALKING")
+//        print("STOPPED WALKING")
         self.removeAction(forKey: "walking")
         self.physicsBody?.velocity = .zero
         
