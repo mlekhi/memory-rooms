@@ -51,8 +51,8 @@ class GameScene: SKScene {
         
         let additionalImages: [UIImage] = [
             UIImage(named: "touchpad_design")!,
-            UIImage(named: "touchpad_design")!,
-            UIImage(named: "touchpad_design")!
+//            UIImage(named: "touchpad_design")!,
+//            UIImage(named: "touchpad_design")!
         ]
         addInteractiveObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: 100, y: 100), interactionText: "this one has images", additionalImages: additionalImages)
 
@@ -198,10 +198,10 @@ class GameScene: SKScene {
 
         // fixed positions
         let placements: [[(position: CGPoint, size: CGSize, rotation: CGFloat)]] = [
-            [(CGPoint(x: 0, y: 0), CGSize(width: 300, height: 400), 0)], // 1 image
+            [(CGPoint(x: 0, y: 0), CGSize(width: 300, height: 400), -.pi / 24)], // 1 image
             [
-                (CGPoint(x: -100, y: 0), CGSize(width: 200, height: 300), .pi / 12),
-                (CGPoint(x: 100, y: 0), CGSize(width: 200, height: 300), -.pi / 12)
+                (CGPoint(x: 100, y: 200), CGSize(width: 250, height: 350), .pi / 12),
+                (CGPoint(x: -100, y: -200), CGSize(width: 250, height: 350), -.pi / 12)
             ], // 2 images
             [
                 (CGPoint(x: -150, y: 200), CGSize(width: 250, height: 350), -.pi / 8),
