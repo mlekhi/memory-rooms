@@ -10,6 +10,7 @@ import SpriteKit
 class Player: SKSpriteNode {
     private var walkFrames: [SKTexture] = []
     private var currentDirection: String = "Down"
+    private var isWalking = false
 
     init() {
         let texture = SKTexture(imageNamed: "character_down")
@@ -52,6 +53,7 @@ class Player: SKSpriteNode {
 
     func startWalking(direction: String) {
         print("STARTED WALKING")
+        isWalking = true
 
         if currentDirection != direction {
             currentDirection = direction
@@ -70,7 +72,9 @@ class Player: SKSpriteNode {
     }
 
     func stopWalking() {
-//        print("STOPPED WALKING")
+        print("STOPPED WALKING")
+        isWalking = false
+
         self.removeAction(forKey: "walking")
         self.physicsBody?.velocity = .zero
         

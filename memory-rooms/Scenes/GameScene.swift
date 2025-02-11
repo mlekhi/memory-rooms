@@ -7,6 +7,7 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 class GameScene: SKScene {
     private var player: Player!
@@ -28,9 +29,12 @@ class GameScene: SKScene {
     private var currentImageIndex: Int = 0
     private var isImageFieldVisible: Bool = false
 
+    private var footstepPlayer: AVAudioPlayer?
+
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-        
+        setupAudio()
+
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
 
         // Add the player
@@ -121,6 +125,20 @@ class GameScene: SKScene {
         gamepadButton.addChild(buttonDesign)
         
         addChild(gamepadButton)
+    }
+    
+    private func setupAudio() {
+        if let footstepURL = Bundle.main.url(forResource: "footstep", withExtension: "wav") {
+            do {
+                footstepPlayer = try AVAudioPlayer(contentsOf: footstepURL)
+                footstepPlayer?.numberOfLoops = -1 // Loop indefinitely
+                footstepPlayer?.volume = 0.5 // Adjust volume as needed
+                footstepPlayer?.rate = 1.5 // Speeds up playback by 50%
+                footstepPlayer?.prepareToPlay()
+            } catch {
+                print("Could not create audio player: \(error)")
+            }
+        }
     }
     
     private func showTextField(textInput: String) {
@@ -280,17 +298,16 @@ class GameScene: SKScene {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         currentDirection = nil
         player.stopWalking()
+        footstepPlayer?.stop()
     }
     
     private func handleWalk(location: CGPoint) {
-        // touchpad location handling
         let touchpadDx = location.x - touchpad.position.x
         let touchpadDy = location.y - touchpad.position.y
-
+        
         let absDx = abs(touchpadDx)
         let absDy = abs(touchpadDy)
-
-        // Determine cardinal direction
+        
         var direction: String
         if absDx > absDy {
             direction = touchpadDx > 0 ? "Right" : "Left"
@@ -298,11 +315,10 @@ class GameScene: SKScene {
             direction = touchpadDy > 0 ? "Up" : "Down"
         }
         
-        print("\(direction)")
-
         if currentDirection != direction {
             currentDirection = direction
             player.startWalking(direction: direction)
+            footstepPlayer?.play() // Start playing footstep sound
         }
     }
     

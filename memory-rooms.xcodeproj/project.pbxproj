@@ -26,6 +26,7 @@
 		18D856C42D3B2F5700103644 /* ObjectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D856C32D3B2F5700103644 /* ObjectNode.swift */; };
 		18D856C72D3B2FB300103644 /* 8-Bit Coin Sound Effect (Copyright Free).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 18D856C52D3B2FB300103644 /* 8-Bit Coin Sound Effect (Copyright Free).mp3 */; };
 		18D856C82D3B2FB300103644 /* 8-Bit Powerup Sound Effects (Copyright Free).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 18D856C62D3B2FB300103644 /* 8-Bit Powerup Sound Effects (Copyright Free).mp3 */; };
+		C0A1FC702D5BDE9200853C86 /* footstep.wav in Resources */ = {isa = PBXBuildFile; fileRef = C0A1FC6F2D5BDE9200853C86 /* footstep.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		18D856C32D3B2F5700103644 /* ObjectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectNode.swift; sourceTree = "<group>"; };
 		18D856C52D3B2FB300103644 /* 8-Bit Coin Sound Effect (Copyright Free).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "8-Bit Coin Sound Effect (Copyright Free).mp3"; sourceTree = "<group>"; };
 		18D856C62D3B2FB300103644 /* 8-Bit Powerup Sound Effects (Copyright Free).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "8-Bit Powerup Sound Effects (Copyright Free).mp3"; sourceTree = "<group>"; };
+		C0A1FC6F2D5BDE9200853C86 /* footstep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = footstep.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 		18D856B12D38814100103644 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				C0A1FC6F2D5BDE9200853C86 /* footstep.wav */,
 				18D856BC2D3B2DDC00103644 /* wall hit.mp3 */,
 				18D856C52D3B2FB300103644 /* 8-Bit Coin Sound Effect (Copyright Free).mp3 */,
 				18D856C62D3B2FB300103644 /* 8-Bit Powerup Sound Effects (Copyright Free).mp3 */,
@@ -317,6 +320,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0A1FC702D5BDE9200853C86 /* footstep.wav in Resources */,
 				18D856BD2D3B2DDC00103644 /* wall hit.mp3 in Resources */,
 				18CA5B9B2D4916390030D5CF /* CustomTileSet.sks in Resources */,
 				18D856C82D3B2FB300103644 /* 8-Bit Powerup Sound Effects (Copyright Free).mp3 in Resources */,
