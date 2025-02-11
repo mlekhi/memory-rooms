@@ -139,7 +139,7 @@ class GameScene: SKScene {
 
         // Create and set up the label
         textLabel = SKLabelNode(text: interactionTexts[currentTextIndex])
-        textLabel?.fontName = "VT323" // TEXT FONT NOT WORKING!
+        textLabel?.fontName = "VT323"
         textLabel?.fontSize = 24
         textLabel?.fontColor = .black
         textLabel?.position = CGPoint(x: 0, y: -12)
