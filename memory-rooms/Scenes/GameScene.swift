@@ -146,20 +146,21 @@ class GameScene: SKScene {
         currentTextIndex = 0
 
         let textFieldSize = CGSize(width: 500, height: 100)
-        textField = SKShapeNode(rectOf: textFieldSize, cornerRadius: 5)
+        textField = SKShapeNode(rectOf: textFieldSize)
+        textField?.lineJoin = .miter
         textField?.position = CGPoint(x: frame.midX, y: -400)
         textField?.fillColor = .white
         textField?.strokeColor = .gray
-        textField?.lineWidth = 2
+        textField?.lineWidth = 10
         textField?.alpha = 0.8
         textField?.isUserInteractionEnabled = false
 
         // Create and set up the label
         textLabel = SKLabelNode(text: interactionTexts[currentTextIndex])
         textLabel?.fontName = "VT323"
-        textLabel?.fontSize = 24
-        textLabel?.fontColor = .black
-        textLabel?.position = CGPoint(x: 0, y: -12)
+        textLabel?.fontSize = 32
+        textLabel?.fontColor = .gray
+        textLabel?.position = CGPoint(x: 0, y: 0)
         textLabel?.horizontalAlignmentMode = .center
         textLabel?.verticalAlignmentMode = .center
 
@@ -261,7 +262,6 @@ class GameScene: SKScene {
 
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("TOUCHES RECIEVED")
         if let touch = touches.first {
             let location = touch.location(in: self)
             
@@ -330,20 +330,16 @@ class GameScene: SKScene {
         let absDy = abs(buttonDy)
 
         if absDx <= gamepadButton.frame.width / 2 && absDy <= gamepadButton.frame.height / 2 {
-            print("Interaction button clicked")
             
             let facingDirection = player.getFacingDirection()
-            print("direction: \(facingDirection)")
             
             if isTextFieldVisible {
                 updateTextField()
             } else if let interactiveObject = findInteractiveObject(direction: facingDirection) {
                 showTextField(textInput: interactiveObject.interactionText)
-                print("Interaction: \(interactiveObject.interactionText)")
 
                 if let images = interactiveObject.additionalImages, !images.isEmpty {
                     showImages(images: images)
-                    print("displaying images")
                 }
             } else {
                 print("No interactive object ahead")
