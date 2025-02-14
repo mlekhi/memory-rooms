@@ -1,7 +1,7 @@
-# Memory Palace: A Nintendo-Style iOS Game for Someone You Love :)
+# Mementos: A Nintendo-Style iOS Game for Someone You Love :)
 
 ## Overview
-**Memory Palace** is a customizable, touchpad-controlled game for iOS, where you can create a virtual space filled with interactive objects that represent memories shared with your significant other. Walk around the world like a classic Nintendo-style game and interact with special objects to relive moments together.
+**Mementos** is a customizable, touchpad-controlled game for iOS, where you can create a virtual space filled with interactive objects that represent memories shared with your significant other. Walk around the world like a classic Nintendo-style game and interact with special objects to relive moments together.
 
 ## Gameplay
 - Use a **touchpad-style controller** (bottom left) to move your character.
