@@ -49,17 +49,16 @@ class GameScene: SKScene {
         addWall(color: customWallColor, size: CGSize(width: 20, height: 825), position: CGPoint(x: 250, y: 90)) // East wall
 
         // add objects here
-        addStaticObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: -50, y: 200))
-        addStaticObject(image: "touchpad_design", size: CGSize(width: 30, height: 30), position: CGPoint(x: 50, y: -50))
-        addInteractiveObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: 100, y: -50), interactionText: "hi! something romantic here")
+//        addStaticObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: -50, y: 200))
         
+        addInteractiveObject(image: "bed", size: CGSize(width: 200, height: 220), position: CGPoint(x: 150, y: 380), interactionText: "hi! this is a bed")
         
         let additionalImages: [UIImage] = [
-            UIImage(named: "touchpad_design")!,
-            UIImage(named: "touchpad_design")!,
-            UIImage(named: "touchpad_design")!
+            UIImage(named: "plant-1")!,
+            UIImage(named: "plant-2")!,
+            UIImage(named: "plant-3")!
         ]
-        addInteractiveObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: 100, y: 100), interactionText: "this one has images", additionalImages: additionalImages)
+        addInteractiveObject(image: "plant", size: CGSize(width: 100, height: 100), position: CGPoint(x: -150, y: 100), interactionText: "this one has images", additionalImages: additionalImages)
 
         createGamepad()
     }
