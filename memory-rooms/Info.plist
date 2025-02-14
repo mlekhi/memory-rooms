@@ -11,5 +11,9 @@
     <array>
         <string>UIInterfaceOrientationPortrait</string>
     </array>
+
+	<key>CFBundleDisplayName</key>
+	<string>Mementos</string>
+
 </dict>
 </plist>
