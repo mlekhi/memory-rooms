@@ -51,14 +51,14 @@ class GameScene: SKScene {
         // add objects here
 //        addStaticObject(image: "touchpad_design", size: CGSize(width: 50, height: 50), position: CGPoint(x: -50, y: 200))
         
-        addInteractiveObject(image: "bed", size: CGSize(width: 200, height: 220), position: CGPoint(x: 150, y: 380), interactionText: "hi! this is a bed")
+        addInteractiveObject(image: "bed", size: CGSize(width: 200, height: 220), position: CGPoint(x: 140, y: 380), interactionText: "hi! this is a bed")
         
         let additionalImages: [UIImage] = [
             UIImage(named: "plant-1")!,
             UIImage(named: "plant-2")!,
             UIImage(named: "plant-3")!
         ]
-        addInteractiveObject(image: "plant", size: CGSize(width: 100, height: 100), position: CGPoint(x: -150, y: 100), interactionText: "this one has images", additionalImages: additionalImages)
+        addInteractiveObject(image: "plant", size: CGSize(width: 100, height: 100), position: CGPoint(x: -150, y: 100), interactionText: "i love our plant garden together <3", additionalImages: additionalImages)
 
         createGamepad()
     }
@@ -194,7 +194,6 @@ class GameScene: SKScene {
         imageField?.position = CGPoint(x: frame.midX, y: 100)
         imageField?.fillColor = .clear
         imageField?.strokeColor = .clear
-        imageField?.alpha = 0.8
         imageField?.isUserInteractionEnabled = false
 
         if let imageField = imageField {
@@ -219,8 +218,8 @@ class GameScene: SKScene {
                 (CGPoint(x: -100, y: -200), CGSize(width: 250, height: 350), -.pi / 12)
             ], // 2 images
             [
-                (CGPoint(x: -150, y: 200), CGSize(width: 250, height: 350), -.pi / 8),
-                (CGPoint(x: 100, y: -50), CGSize(width: 250, height: 350), .pi / 12),
+                (CGPoint(x: -100, y: 260), CGSize(width: 250, height: 350), -.pi / 8),
+                (CGPoint(x: 150, y: -50), CGSize(width: 250, height: 350), .pi / 12),
                 (CGPoint(x: -150, y: -250), CGSize(width: 250, height: 350), -.pi / 12),
             ] // 3 images
         ]
