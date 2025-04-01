@@ -1,5 +1,8 @@
 # Mementos: A Nintendo-Style iOS Game for Someone You Love :)
 
+![Uploading ezgif-28a230cfc99c57.gif…]()
+
+
 ## Overview
 **Mementos** is a customizable, touchpad-controlled game for iOS, where you can create a virtual space filled with interactive objects that represent memories shared with your significant other. Walk around the world like a classic Nintendo-style game and interact with special objects to relive moments together.
 
